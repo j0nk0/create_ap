@@ -72,3 +72,21 @@ echo CONFIG_DRIVER_RTW=y >> .config
 make
 make install
 ```
+
+
+### Install hostapd Errors
+Found when receiving error:
+fatal error: netlink/genl/genl.h: No such file or directory
+at make of hostapd for realtek compatability.
+
+The realtek howto states to use hostapd-2.2, but the current patch will only work with 2.6 (Issue at patch).
+
+The rtl1887 patch would also need:
+libnl-3-dev libssl-dev libnl-genl-3-dev
+as dependecies.
+
+You would additionally need to change the hostapd .config to use these libs by uncommenting:
+CONFIG_LIBNL32=y
+As found here
+
+This helped me to compile everything on raspbian
